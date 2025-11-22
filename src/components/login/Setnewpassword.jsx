@@ -39,6 +39,7 @@ function Setnewpassword(){
                     newPassword:'',
                     confirmPassword:''
                 });
+                setFormState('login');
             });
         }
     }

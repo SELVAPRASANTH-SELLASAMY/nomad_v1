@@ -2,7 +2,7 @@ const validateContent = (content) => {
     const MIN_TITLE_LEN = 10;
     const MIN_CONTENT_LEN = 1000;
     // Checking the category is empty
-    if(!content.category || content.category.trim() === ""){
+    if(!content.category || content.category.trim() === "" || content.category.toLowerCase().trim() === "other" || content.category.toLowerCase().trim() === "--select--"){
         return {state:false,message:"Please select the category"};
     }
 
