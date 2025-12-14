@@ -50,7 +50,7 @@ function Newpost(){
     return(
         edit && (isPending || error) 
         ? 
-            <p className="fs-5 mt-5 font-weight-600 uppercase text-secondary">{isPending ? 'Loading...' : error}</p> 
+            <p className="fs-5 mt-5 font-weight-600 uppercase text-secondary">{isPending ? 'Please Wait...' : error}</p> 
         :
         <>
             <section className="bg-common-blue w-100 pb-15">

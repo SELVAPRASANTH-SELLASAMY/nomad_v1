@@ -2,6 +2,7 @@ import { useEffect, useImperativeHandle, useMemo } from "react";
 import { useFetch, useUpdate } from "../../customhooks/httpMethod";
 import ReactSwitch from "react-switch";
 import { forwardRef } from "react";
+import Spinner from "../../modals/Loading/Spinner";
 function UsersList({users,setUsers},ref){
 
     const { data, error, isPending } = useFetch('getUsers');
@@ -30,7 +31,7 @@ function UsersList({users,setUsers},ref){
         getSelectedUsers: () => selectedUsers
     }),[selectedUsers]);
 
-    if(isPending || error?.message) return <p className="mt-1 fs-4 font-weight-600 uppercase text-secondary">{isPending ? 'Loading...' : error.message + "!"}</p>
+    if(isPending || error?.message) return <p className="mt-1 fs-4 font-weight-600 uppercase text-secondary">{isPending ? <Spinner/> : error.message + "!"}</p>
 
     return(
         <div className="overflow-x-auto">

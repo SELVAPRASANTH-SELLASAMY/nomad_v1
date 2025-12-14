@@ -8,7 +8,7 @@ function TextComposer(){
     return(
         <section className="text_composer">
             {
-                (isPending || error) ? <p className="fs-5_5 font-weight-600 uppercase text-secondary">{isPending ? 'Loading...' : error?.message}</p>
+                (isPending || error) ? <p className="fs-5_5 font-weight-600 uppercase text-secondary">{isPending ? 'Please Wait...' : error?.message}</p>
                 : data && 
                 <>
                     <h2>

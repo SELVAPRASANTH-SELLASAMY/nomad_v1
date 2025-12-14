@@ -1,19 +1,29 @@
-.container{
-    display: flex;
-    flex-wrap: wrap;
+svg.spinner{
     width: 45px;
-    gap: 5px;
-    transform: rotate(45deg);
 }
-.rect{
-    animation: scale 500ms ease infinite alternate;
-    animation-delay: calc(var(--i) * 600ms);
+svg.spinner circle:last-child{
+    animation: spin 1s linear infinite;
+    transform-origin: center;
 }
-@keyframes scale {
-    From{
-        transform: scale(.9);
+@keyframes stroke-spin {
+    0%{
+        stroke-dashoffset: 250;
     }
-    To{
-        transform: scale(1);
+    50%{
+        stroke-dashoffset: 50;
+    }
+    50.1%{
+        stroke-dashoffset: 51;
+    }
+    100%{
+        stroke-dashoffset: 249;
+    }
+}
+@keyframes spin {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
     }
 }
