@@ -1,3 +1,16 @@
+/* Screen width <= 950 */
+@media screen and (width <= 950px) {
+    .mt-2_L_950{
+        margin-top: 2rem;
+    }
+    .d-block_L_950{
+        display: block;
+    }
+    .w-100_L_950{
+        width: 100%;
+    }
+}
+
 /* Screen width <= 768 */
 @media screen and (width <= 768px) {
     /* Font size */
@@ -20,10 +33,6 @@
     }
     .w-child-min-18rem_L_768 > *{
         min-width: 18rem;
-    }
-    .custom-svg-button svg{
-        height: 1.5em;
-        width: 1.5em;
     }
 
     /* Height */
@@ -228,6 +237,11 @@
     .plr-1_L_425{
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+
+    /* Font */
+    .fs-5_L_500{
+        font-size: var(--font_5);
     }
 }
 
