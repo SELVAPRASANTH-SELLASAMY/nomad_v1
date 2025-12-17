@@ -35,12 +35,12 @@ const BlogOptions = ({id}) => {
 
     return(
         <div className='absolute top-8p right-8p d-flex flex-row-rev gap-05'>
-            <span role='button' tabIndex="0" onClick={handleMenuClick} title='More options' className={`pointer w-015rem aspect-ratio-equal bg-overlay rounded-100px d-flex center-y justify-center click-scale-down ${showOptions && 'rotate-90deg'}`}>
+            <span role='button' tabIndex="0" onClick={handleMenuClick} title='More options' className={`custom-svg-button pointer w-2rem w-3_L_768 aspect-ratio-equal bg-overlay rounded-100px d-flex center-y justify-center click-scale-down ${showOptions && 'rotate-90deg'}`}>
                 <PiDotsThreeOutlineVerticalFill/>
             </span>
             {
                 (showOptions && options) && options.map((option,index)=>(
-                    <span style={{animationDelay:`calc(${index} * 50ms)`}} role='button' tabIndex="0" key={index} onClick={option.clickHandler} title={option.name} className='pointer w-015rem aspect-ratio-equal bg-overlay rounded-100px d-flex center-y justify-center click-scale-down button-opa-effect'>
+                    <span style={{animationDelay:`calc(${index} * 50ms)`}} role='button' tabIndex="0" key={index} onClick={option.clickHandler} title={option.name} className='custom-svg-button pointer w-2rem w-3_L_768 aspect-ratio-equal bg-overlay rounded-100px d-flex center-y justify-center click-scale-down button-opa-effect'>
                         {option.icon}
                     </span>
                 ))

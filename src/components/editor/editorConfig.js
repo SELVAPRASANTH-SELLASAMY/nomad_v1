@@ -10,9 +10,12 @@ const QuillConfig = (quillInstance) =>({
         toolbar: {
             container: [
                 [{header:[3, 4, 5, 6, false]}],
-                ['bold','italic','underline'],
-                [{list:'ordered'},{list:'bullet'},'blockquote'],
-                ['link','image'],
+                ['bold','italic','underline','strike'],
+                [{list:'ordered'},{list:'bullet'},'blockquote','code-block'],
+                [{align:'center'},{align:'right'},{align:'justify'}],
+                [{script:'sub'},{script:'super'}],
+                [{indent:'-1'},{indent:'+1'}],
+                ['link','image','video'],
                 ['fullscreen-mode'],
                 ['clean']
             ],

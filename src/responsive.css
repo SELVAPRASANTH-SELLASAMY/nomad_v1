@@ -12,11 +12,18 @@
     .w-2_L_768{
         width: 2rem;
     }
+    .w-3_L_768{
+        width: 3rem;
+    }
     .aspect-ration-equal_L_768{
         aspect-ratio: 1/1;
     }
     .w-child-min-18rem_L_768 > *{
         min-width: 18rem;
+    }
+    .custom-svg-button svg{
+        height: 1.5em;
+        width: 1.5em;
     }
 
     /* Height */

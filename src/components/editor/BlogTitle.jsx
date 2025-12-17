@@ -1,6 +1,6 @@
 import { useState } from "react";
 function BlogTitle({content,setContent}){
-    const [editTitle,setEditTitle] = useState(false);
+    const [editTitle,setEditTitle] = useState(true);
     const handleTitleChange = (e) => {
         setContent((prevContent)=>({
             ...prevContent,
@@ -10,7 +10,7 @@ function BlogTitle({content,setContent}){
     return(
         <>
             {
-                editTitle ?
+                editTitle || content.title === "" ?
                     <input 
                         style={{marginBlockEnd:'.75em'}}
                         type="text"
@@ -24,7 +24,7 @@ function BlogTitle({content,setContent}){
                         value={content.title}
                     /> 
                     :
-                    <h2 onClick={()=>setEditTitle(true)} className="fs-7 font-weight-600 text-centered uppercase pointer">{content.title || "Click here to edit the title..."}</h2>
+                    <h2 onClick={()=>setEditTitle(true)} className="fs-7 font-weight-600 text-centered uppercase pointer">{content.title}</h2>
             }
         </>
     );

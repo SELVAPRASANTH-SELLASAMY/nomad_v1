@@ -15,6 +15,9 @@
 }
 .ql-toolbar{
     background-color: var(--background);
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 0;
 }
 .ql-toolbar.ql-snow{
     font-family: unset;
@@ -28,7 +31,8 @@
 .ql-snow.ql-toolbar button, .ql-snow .ql-toolbar button{
     background-color: var(--tileblue);
     border: .1rem solid var(--lightgrey);
-    margin: 0 .5rem;
+    margin-left: 0;
+    margin-right: 1rem;
     border-radius: .25rem;
     height: 2rem;
     width: auto;
@@ -152,17 +156,8 @@
 
 /* Screen width <= 950 */
 @media screen and (width <= 950px){
-    .ql-toolbar{
-        display: flex;
-        flex-wrap: wrap;
-        gap: .5rem 0;
-    }
     .ql-toolbar.ql-snow .ql-formats:not(:first-child){
         margin-right: 0;
-    }
-    .ql-snow.ql-toolbar button, .ql-snow .ql-toolbar button{
-        margin-left: 0;
-        margin-right: 1rem;
     }
 }
 
