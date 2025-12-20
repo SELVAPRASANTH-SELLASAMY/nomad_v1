@@ -12,7 +12,7 @@ function SideBar({activePage,options}){
     if(((windowWidth > 768) || (windowWidth <= 768 && displayNav))){
         return(
             <div>
-                <aside style={{marginTop:'9rem'}} onClick={handleClick} className="w-10rem fixed top-0 h-100 bg-common-blue">
+                <aside style={{marginTop: windowWidth > 768 ? '9rem' : windowWidth > 500 ? '4rem' : '3.25rem'}} onClick={handleClick} className="w-10rem fixed top-0 h-100 bg-common-blue backdrop-effect_L_768">
                     {
                         options.map((option,index) => (
                             <button key={index} onClick={option.clickEvent} type="button" className={`fs-4 mtb-15 pointer d-flex no-bg ${activePage === option.value ? 'text-primary' : 'text-white'}`}

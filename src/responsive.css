@@ -1,11 +1,16 @@
 /* Screen width <= 950 */
 @media screen and (width <= 950px) {
+    /* Margin */
     .mt-2_L_950{
         margin-top: 2rem;
     }
+
+    /* Display */
     .d-block_L_950{
         display: block;
     }
+
+    /* Width */
     .w-100_L_950{
         width: 100%;
     }
@@ -92,6 +97,9 @@
     .static_L_768{
         position: static;
     }
+    .top-0_L_768{
+        top: 0;
+    }
 
     /* Overflow */
     .overflow-x-auto_L_768{
@@ -135,6 +143,18 @@
     }
     #OptionList > li[aria-selected=true]{
         backdrop-filter: blur(50px);
+    }
+
+    /* Effects */
+    .backdrop-effect_L_768::after{
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 0;
+        height: 100dvh;
+        width: 100vw;
+        background-color: var(--backdrop);
+        z-index: -1;
     }
 }
 

@@ -32,7 +32,7 @@ function Sidebar(){
     return(
         <>
             {displayNav && 
-                <nav onClick={() => handleNavDisplay()} className="w-13rem h-100 bg-tile-blue plr-1 fixed left-0 top-0 z-index-91 pt-5 pt-4_L_500">
+                <nav onClick={() => handleNavDisplay()} className="w-13rem h-100 bg-tile-blue plr-1 fixed left-0 top-0 z-index-91 pt-5 pt-4_L_500 backdrop-effect">
                     {
                         navigations.map((nav,index)=>(
                             <Link to={nav.path} key={index} className={`fs-6 d-flex center-y gap-05 rounded-05 ptb-05 plr-1 mtb-1 ${location.pathname === nav.path ? 'bg-green text-black' : 'text-white'}`}>
