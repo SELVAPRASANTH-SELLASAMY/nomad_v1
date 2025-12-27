@@ -181,6 +181,12 @@
 .row-gap-1{
     row-gap: 1rem;
 }
+.row-gap-05{
+    row-gap: .5rem;
+}
+.col-gap-3{
+    column-gap: 3rem;
+}
 .mtb-auto{
     margin-top: auto;
     margin-bottom: auto;
