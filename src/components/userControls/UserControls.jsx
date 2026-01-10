@@ -2,9 +2,11 @@ import { MdOutlineSettings, MdOutlineLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { usePost } from '../../customhooks/httpMethod';
 import { useUser } from "../../store/zustandStore";
+import { useBlogManager } from "../../store/BlogStore";
 function UserControls(){
     const navigate = useNavigate();
     const removeUser = useUser(state => state.removeUser);
+    const clearBlogs = useBlogManager(state => state.clearBlogs);
     const { post } = usePost('/signout');
     const gotoSettings = () => {
         navigate("/settings");
@@ -12,7 +14,8 @@ function UserControls(){
 
     const signOut = () => {
         post(null,() => {
-            removeUser({});
+            removeUser();
+            clearBlogs();
             navigate("/login",{replace: true});
         },true,["Sign Out","Are you sure want to sign out?"]);
     }

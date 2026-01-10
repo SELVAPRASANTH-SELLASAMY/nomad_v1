@@ -1,16 +1,18 @@
 import { create } from "zustand";
 import Axios from "../customhooks/httpMethod/utils/Axios";
 
+const defaultFilters = {
+    page: 1,
+    category: "All",
+    sort: {label:"name",value:"title"},
+    sortOrder: 1,
+    search: ""
+}
+
 export const useBlogManager = create((set) => ({
     blogs: [],
     hasMore: false,
-    filters: {
-        page: 1,
-        category: "All",
-        sort: {label:"name",value:"title"},
-        sortOrder: 1,
-        search: ""
-    },
+    filters: defaultFilters,
     cachedFilters: "",
     addBlogs: (newBlogs) => set((state) => ({
         blogs: [...state.blogs,...newBlogs],
@@ -38,6 +40,12 @@ export const useBlogManager = create((set) => ({
     handleSearch: (input) => set((state) => ({
         filters: {...state.filters,search:input, page: 1},
         blogs: []
+    })),
+    clearBlogs: () => set(() => ({
+        blogs: [],
+        hasMore: false,
+        filters: defaultFilters,
+        cachedFilters: ""
     }))
 }));
 
