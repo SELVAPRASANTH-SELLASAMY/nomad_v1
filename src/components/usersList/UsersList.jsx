@@ -1,4 +1,4 @@
-import { useEffect, useImperativeHandle, useMemo } from "react";
+import { useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
 import { useFetch, useUpdate } from "../../customhooks/httpMethod";
 import ReactSwitch from "react-switch";
 import { forwardRef } from "react";
@@ -9,7 +9,9 @@ function UsersList({users,setUsers},ref){
 
     const { update } = useUpdate('approve');
 
-    let selectedUsers = useMemo(() => [],[]);
+    const [selectedUsers,setSelectedUsers] = useState([]);
+
+    const allUsers = users.map(user => user._id);
 
     useEffect(() => {
         if(data?.users){
@@ -24,7 +26,11 @@ function UsersList({users,setUsers},ref){
     }
 
     const handleSelect = (e,userId) => {
-        e.target.checked ? selectedUsers.push(userId) : selectedUsers.splice(selectedUsers.indexOf(userId),1);
+        e.target.checked ? setSelectedUsers([...selectedUsers,userId]) : setSelectedUsers(selectedUsers.filter(Id => Id != userId));
+    }
+
+    const handleSelectAll = (e) => {
+        e.target.checked ? setSelectedUsers(allUsers) : (users.length === selectedUsers.length) ? setSelectedUsers([]) : null;
     }
 
     useImperativeHandle(ref,() => ({
@@ -38,7 +44,7 @@ function UsersList({users,setUsers},ref){
             <table style={{borderCollapse:'collapse',minWidth:"750px"}} className="bg-tile-blue w-100 mtb-1 rounded-05 hide-overflow shadow-primary">
                 <thead>
                     <tr>
-                        <th><input type="checkbox"/></th>
+                        <th><input type="checkbox" onChange={handleSelectAll} checked={allUsers.every(Id => selectedUsers.includes(Id))}/></th>
                         <th className="fs-4 text-start font-weight-500 ptb-05 plr-05">Name</th>
                         <th className="fs-4 text-start font-weight-500 ptb-05 plr-05">Email</th>
                         <th className="fs-4 text-start font-weight-500 ptb-05 plr-05">Role</th>
@@ -50,7 +56,7 @@ function UsersList({users,setUsers},ref){
                         users.map((user) => (
                             <tr key={user._id}>
                                 <td className="text-centered">
-                                    <input onChange={(e) => handleSelect(e,user._id)} type="checkbox"/>
+                                    <input onChange={(e) => handleSelect(e,user._id)} type="checkbox" checked={selectedUsers.includes(user._id)}/>
                                 </td>
                                 <td className="fs-4 p-05">{user.name}</td>
                                 <td className="fs-4 p-05">
