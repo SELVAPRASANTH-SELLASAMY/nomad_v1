@@ -17,9 +17,9 @@ function Thumbnail(){
 
     return(
         <>
-            <p onClick={handleClick} className="fs-4 rounded-05 pointer w-fit w-max-600 w-max-428_L_768 w-max-300_L_500 mt-05 hide-overflow white-space-no-wrap ellipsis">{
-                (content?.thumbnail === null || content.thumbnail?.name === undefined) ? 'Click to choose thumbnail'
-                : `Thumbnail: ${content?.thumbnail?.name}`
+            <p onClick={handleClick} className="fs-4 pointer w-fit w-max-600 w-max-428_L_768 w-max-300_L_500 mt-05 hide-overflow white-space-no-wrap ellipsis">{
+                (!content?.thumbnail) ? 'Click to choose thumbnail'
+                : <><span>Thumbnail: </span><span className="text-secondary fs-3">{content?.thumbnail?.name || content?.thumbnail}</span></>
             }</p>
             <input 
                 ref={fileInput}

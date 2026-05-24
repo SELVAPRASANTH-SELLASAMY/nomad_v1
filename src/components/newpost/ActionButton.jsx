@@ -16,29 +16,31 @@ function ActionButton(){
 
     const toBase64 = (file) => {
         if(file){
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            const result = reader.result;
-            return result ? result : null;
+            if(typeof file !== 'string'){
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                const result = reader.result;
+                return result ? result : null;
+            }
+            else{
+                return file;
+            }
         }
         return null;
     }
 
     const saveBlog = async() => {
         if("copy" in content){
-            // let updatedContent = {};
             const formData = new FormData();
             Object.keys(content.copy).forEach((key) => {
                 if(key === "thumbnail" && (toBase64(content[key]) !== toBase64(content.copy[key]))){
-                    // updatedContent[key] = content[key];
                     formData.append(key,content[key]);
                 }
                 else if(key !== "published" && (content[key] !== content.copy[key])){
-                    // updatedContent[key] = content[key];
                     formData.append(key,content[key]);
                 }
             });
-            // if((Object.keys(updatedContent).length) > 0){
+            
             if(Array.from(formData.entries()).length > 0){
                 update(formData,() => {
                     setContent((prev) => {

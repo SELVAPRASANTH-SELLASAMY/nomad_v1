@@ -1,3 +1,11 @@
+/* Screen width <= 1120 */
+@media screen and (width <= 1120px) {
+    /* line height */
+    .lh-2_L_1120{
+        line-height: 2rem;
+    }
+}
+
 /* Screen width <= 950 */
 @media screen and (width <= 950px) {
     /* Margin */
@@ -163,6 +171,9 @@
 
 /* Screen width <= 650 */
 @media screen and (width <= 650px){
+    .lh-1_L_650{
+        line-height: 2rem;
+    }
     /* Padding */
     .plr-15_L_650{
         padding-left: 1.5rem;
@@ -197,6 +208,11 @@
     }
     .w-max-300_L_500{
         max-width: 300px;
+    }
+
+    /* height */
+    .h-min-350_L_500{
+        min-height: 350px;
     }
 
     /* Font size */

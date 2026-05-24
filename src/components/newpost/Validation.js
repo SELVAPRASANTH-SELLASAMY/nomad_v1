@@ -18,10 +18,9 @@ const validateContent = (content) => {
         return {state:false,message:`Content length must be greater than ${MIN_CONTENT_LEN}`};
     }
 
-    // Checking content include at least one image in it.
-    const refImage = content.content.match(/<img[^>]*>/);
-    if(!refImage){
-        return {state:false,message:`Content must include at least one image for reference`};
+    // Checking if post includes thumbnail
+    if(!content.thumbnail){
+        return {state:false,message: "Content must have thumbnail"};
     }
 
     return {state:true};

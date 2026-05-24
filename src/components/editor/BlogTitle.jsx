@@ -14,7 +14,6 @@ function BlogTitle(){
             {
                 editTitle || content.title === "" ?
                     <input 
-                        style={{marginBlockEnd:'.75em'}}
                         type="text"
                         id="blog-title"
                         name="blog-title"
