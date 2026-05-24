@@ -39,6 +39,9 @@
     .w-child-min-18rem_L_768 > *{
         min-width: 18rem;
     }
+    .w-max-428_L_768{
+        max-width: 428px;
+    }
 
     /* Height */
     .h-min-0_L_768{
@@ -191,6 +194,9 @@
     /* Width */
     .w-min-0_L_500{
         min-width: 0;
+    }
+    .w-max-300_L_500{
+        max-width: 300px;
     }
 
     /* Font size */

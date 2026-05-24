@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Option } from "../../sharedUi/select";
 import { RiSave3Line, RiUploadCloud2Line, RiDownloadCloud2Line } from "react-icons/ri";
 import { usePost, useUpdate } from "../../customhooks/httpMethod";
@@ -6,32 +6,55 @@ import { validateContent } from "./Validation";
 import { useAlert } from "../../store/zustandStore";
 import useWindowWidth from "../../customhooks/useWindowWidth";
 import { MobileOption } from "../../sharedUi/select";
-function ActionButton({content,setContent}){
+import { BlogContext } from "../../contexts/BlogProvider/BlogContext";
+function ActionButton(){
+    const {content,setContent} = useContext(BlogContext);
     const windowWidth = useWindowWidth();
     const alert = useAlert(state => state.handleAlert);
     const { post } = usePost('blog/add');
     const { update } = useUpdate(content.id ? `blog/update?id=${content.id}` : null);
 
-    const saveBlog = () => {
+    const toBase64 = (file) => {
+        if(file){
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            const result = reader.result;
+            return result ? result : null;
+        }
+        return null;
+    }
+
+    const saveBlog = async() => {
         if("copy" in content){
-            let updatedContent = {};
+            // let updatedContent = {};
+            const formData = new FormData();
             Object.keys(content.copy).forEach((key) => {
-                if(key !== "published" && (content[key] !== content.copy[key])){
-                    updatedContent[key] = content[key];
+                if(key === "thumbnail" && (toBase64(content[key]) !== toBase64(content.copy[key]))){
+                    // updatedContent[key] = content[key];
+                    formData.append(key,content[key]);
+                }
+                else if(key !== "published" && (content[key] !== content.copy[key])){
+                    // updatedContent[key] = content[key];
+                    formData.append(key,content[key]);
                 }
             });
-            if((Object.keys(updatedContent).length) > 0){
-                update(updatedContent,() => {
+            // if((Object.keys(updatedContent).length) > 0){
+            if(Array.from(formData.entries()).length > 0){
+                update(formData,() => {
                     setContent((prev) => {
-                        const {title, content, category} = prev;
-                        prev.copy = {title, content, category};
+                        const {title, content, category, thumbnail} = prev;
+                        prev.copy = {title, content, category, thumbnail};
                         return {...prev};
                     });
                 });
             }
         }
         else{
-            post(content);
+            const formData = new FormData();
+            Object.keys(content).forEach((key) => {
+                formData.append(key,content[key]);
+            })
+            post(formData);
         }
     }
 

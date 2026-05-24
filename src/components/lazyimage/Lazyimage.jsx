@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react';
-function Lazyimage({componentClass,placeholder,source,onClick,altText}){
+import placeholder from '../../assets/placeholder.png';
+function Lazyimage({componentClass,source,onClick,altText}){
     const image = useRef();
     useEffect(()=>{
+        if(!source) return;
         const img = image.current;
         const setsrc = () => {
             if(img){
-                img.src = source;
+                img.src = import.meta.env.VITE_REACT_APP_API_URL + "/" + source;
                 img.removeEventListener('load',setsrc);
             }
         }

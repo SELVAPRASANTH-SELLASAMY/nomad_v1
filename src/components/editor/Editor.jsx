@@ -1,11 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import 'quill/dist/quill.snow.css';
 import Quill from "quill";
 import { QuillConfig } from './editorConfig';
 import './editor.css';
 import { debounce } from "lodash";
 import BlogTitle from "./BlogTitle";
-function Editor({content,setContent}){
+import Thumbnail from "./Thumbnail";
+import { BlogContext } from "../../contexts/BlogProvider/BlogContext";
+function Editor(){
+    const {content,setContent} = useContext(BlogContext);
+
     const editorRef = useRef(null);
     const quillInstance = useRef(null);
 
@@ -36,7 +40,8 @@ function Editor({content,setContent}){
     
     return(
         <section className="nomad-editor">
-            <BlogTitle content={content} setContent={setContent}/>
+            <BlogTitle/>
+            <Thumbnail/>
             <br />
             <div className="quill-element mb-25">
                 <div ref={editorRef}/>

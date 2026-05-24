@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Select } from '../../sharedUi/select';
 import ActionButton from './ActionButton';
 import Editor from '../editor/Editor';
@@ -6,13 +6,9 @@ import { useSearchParams } from "react-router-dom";
 import { useFetch } from "../../customhooks/httpMethod";
 import { useBlogCategory } from '../../store/BlogStore';
 import PrimaryInput from '../../sharedUi/PrimaryInput';
+import { BlogContext } from '../../contexts/BlogProvider/BlogContext';
 function Newpost(){
-    const [content,setContent] = useState({
-        title:'',
-        content:'',
-        published:false,
-        category:''
-    });
+    const {content,setContent} = useContext(BlogContext);
 
     const categories = ["--Select--",...useBlogCategory(state => state.categories).filter(item => item !== "All"),"Other"];
     const fetchCategories = useBlogCategory(state => state.fetchCategories);
@@ -75,10 +71,10 @@ function Newpost(){
                             />
                         }
                     </div>
-                    <ActionButton content={content} setContent={setContent}/>
+                    <ActionButton/>
                 </div>
             </section>
-            <Editor content={content} setContent={setContent}/>
+            <Editor/>
         </>
     );
 }

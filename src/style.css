@@ -97,6 +97,9 @@
 .fs-9{
     font-size: var(--font_8);
 }
+.d-none{
+    display: none;
+}
 .d-inline{
     display: inline;
 }

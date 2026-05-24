@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useUser } from '../../store/zustandStore';
 import Lazyimage from '../lazyimage/Lazyimage';
 import BlogOptions from './Manageblog';
@@ -17,15 +18,14 @@ function Blogtile({blog}){
         const year = String(date.getFullYear()).padStart(2,'0');
         return `${day}-${month}-${year}`;
     }
-    
     return(
         <div onClick={gotoBlog} className='bg-tile-blue p-1 rounded-1 d-flex flex-col gap-05 relative border-grey-005'>
             <BlogOptions id={blog._id}/>
 
             <Lazyimage 
                 componentClass={'w-100 rounded-top-1 hide-overflow aspect-ratio-21 d-flex justify-center'} 
-                placeholder={blog.lazyImage} 
-                source={blog.content}
+                // placeholder={blog.thumbnail} 
+                source={blog.thumbnail}
                 altText={`${blog.title} thumbnail`}
             />
 

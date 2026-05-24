@@ -1,5 +1,7 @@
-import { useState } from "react";
-function BlogTitle({content,setContent}){
+import { useContext, useState } from "react";
+import { BlogContext } from "../../contexts/BlogProvider/BlogContext";
+function BlogTitle(){
+    const {content,setContent} = useContext(BlogContext);
     const [editTitle,setEditTitle] = useState(true);
     const handleTitleChange = (e) => {
         setContent((prevContent)=>({
