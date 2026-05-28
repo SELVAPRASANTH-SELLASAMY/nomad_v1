@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import './textcomposer.css';
 import { useFetch } from "../../customhooks/httpMethod";
 import { useCallback, useEffect } from "react";
+import Lazyimage from "../lazyimage/Lazyimage";
 function TextComposer(){
     const [queryParams] = useSearchParams();
     const Id = queryParams.get("id");
@@ -15,14 +16,18 @@ function TextComposer(){
         return `${day}-${month}-${year}`;
     }
 
+    useEffect(() => {
+        if(data) console.log(data.data.thumbnail);
+        if(data) console.log(data.data.placeholderThumbnail);
+    },[data]);
 
     const getFormatedMetaData = useCallback(() => {
         if(data){
             return[
                 {Author: data.data.owner.name},
                 {Category: data.data.category.charAt(0).toUpperCase() + data.data.category.slice(1).toLowerCase()},
-                {Created: getFormatedDate(data.data.createdAt)},
-                {Updated: getFormatedDate(data.data.updatedAt)},
+                {"Created At": getFormatedDate(data.data.createdAt)},
+                {"Updated At": getFormatedDate(data.data.updatedAt)},
                 {Status: data?.data.published ? "Published" : "Not Published"}
             ];
         }
@@ -40,7 +45,14 @@ function TextComposer(){
                         <span className="bottomline"></span>
                     </h2>
 
-                    <div className="metadata d-flex wrap-flex justify-center row-gap-05 col-gap-3 mb-1">
+                    <Lazyimage 
+                        componentClass={'w-100 rounded-top-1 d-flex justify-center'} 
+                        placeholder={data?.data?.placeholderThumbnail} 
+                        source={data?.data?.thumbnail}
+                        altText={`${data?.data?.title} thumbnail`}
+                    />
+
+                    <div className="metadata d-flex wrap-flex justify-center row-gap-05 col-gap-3">
                         {
                             getFormatedMetaData()?.map((_,index) => (
                                 <p key={index}>

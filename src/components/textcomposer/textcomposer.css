@@ -20,12 +20,13 @@
     text-transform: uppercase;
     text-align: center;
     position: relative;
+    margin-bottom: 6rem;
     margin-top: 6rem;
     line-height: 2.5rem;
 }
 div.metadata{
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 .text_composer h2::before{
     content: "blog";
@@ -104,4 +105,10 @@ span.bottomline{
 .text_composer blockquote{
     border-left: .25rem solid var(--green);
     border-radius: .25rem;
+}
+
+@media screen and (width < 530px) {
+    .text_composer h2{
+        margin-bottom: 4rem;
+    }
 }

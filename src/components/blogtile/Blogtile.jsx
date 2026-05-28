@@ -24,7 +24,7 @@ function Blogtile({blog}){
 
             <Lazyimage 
                 componentClass={'w-100 rounded-top-1 hide-overflow aspect-ratio-21 d-flex justify-center'} 
-                // placeholder={blog.thumbnail} 
+                placeholder={blog.placeholderThumbnail} 
                 source={blog.thumbnail}
                 altText={`${blog.title} thumbnail`}
             />

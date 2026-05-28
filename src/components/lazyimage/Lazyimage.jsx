@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
-import placeholder from '../../assets/placeholder.png';
-function Lazyimage({componentClass,source,onClick,altText}){
+function Lazyimage({componentClass,source,placeholder,onClick,altText}){
+    const absoluteUrl = import.meta.env.VITE_REACT_APP_API_URL + "/";
     const image = useRef();
     useEffect(()=>{
         if(!source) return;
         const img = image.current;
         const setsrc = () => {
             if(img){
-                img.src = import.meta.env.VITE_REACT_APP_API_URL + "/" + source;
+                img.src = absoluteUrl + source;
                 img.removeEventListener('load',setsrc);
             }
         }
@@ -17,7 +17,7 @@ function Lazyimage({componentClass,source,onClick,altText}){
 
     return(
         <div style={{alignItems:"flex-start"}} className={componentClass}>
-            <img loading='lazy' className='w-100' onClick={onClick && onClick} ref={image} src={placeholder} alt={altText} />
+            <img loading='lazy' className='w-100' onClick={onClick && onClick} ref={image} src={absoluteUrl+placeholder} alt={altText} />
         </div>
     );
 }
