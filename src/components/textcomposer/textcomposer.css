@@ -90,9 +90,9 @@ span.bottomline{
 .text_composer strong{
     font-weight: 600;
 }
-.text_composer ol{
+/* .text_composer ol{
     margin-left: 1.25rem;
-} 
+}  */
 .text_composer li::marker{
     color: var(--green);
 }
@@ -105,6 +105,24 @@ span.bottomline{
 .text_composer blockquote{
     border-left: .25rem solid var(--green);
     border-radius: .25rem;
+}
+#blog-details li strong{
+    width: 125px;
+}
+#blog-details li span::before{
+    content: ":";
+    margin-right: 1rem;
+    font-weight: 700;
+}
+ol#blog-details{
+    border-left: .25rem solid var(--green);
+}
+#blog-details li{
+    list-style: disc;
+    list-style-position: inside;
+}
+#blog-details li::marker{
+    background-color: var(--green);
 }
 
 @media screen and (width < 530px) {

@@ -16,15 +16,9 @@ function TextComposer(){
         return `${day}-${month}-${year}`;
     }
 
-    useEffect(() => {
-        if(data) console.log(data.data.thumbnail);
-        if(data) console.log(data.data.placeholderThumbnail);
-    },[data]);
-
     const getFormatedMetaData = useCallback(() => {
         if(data){
             return[
-                {Author: data.data.owner.name},
                 {Category: data.data.category.charAt(0).toUpperCase() + data.data.category.slice(1).toLowerCase()},
                 {"Created At": getFormatedDate(data.data.createdAt)},
                 {"Updated At": getFormatedDate(data.data.updatedAt)},
@@ -45,25 +39,36 @@ function TextComposer(){
                         <span className="bottomline"></span>
                     </h2>
 
-                    <Lazyimage 
-                        componentClass={'w-100 rounded-top-1 d-flex justify-center'} 
-                        placeholder={data?.data?.placeholderThumbnail} 
-                        source={data?.data?.thumbnail}
-                        altText={`${data?.data?.title} thumbnail`}
-                    />
+                    <div className="d-grid d-block_L_1024 gap-2 center-y" style={{gridTemplateColumns: "2fr 1fr"}}>
+                        <Lazyimage 
+                            componentClass={'rounded-top-1'} 
+                            placeholder={data?.data?.placeholderThumbnail} 
+                            source={data?.data?.thumbnail}
+                            altText={`${data?.data?.title} thumbnail`}
+                        />
 
-                    <div className="metadata d-flex wrap-flex justify-center row-gap-05 col-gap-3">
-                        {
-                            getFormatedMetaData()?.map((_,index) => (
-                                <p key={index}>
-                                    <strong className="font-weight-500 text-white">{Object.keys(getFormatedMetaData()[index])[0]} : </strong> 
-                                    {Object.values(getFormatedMetaData()[index])[0]}
-                                </p>
-                            ))
-                        }
+                        <div className="d-flex flex-col gap-1 mt-125_L_1024">
+                            <figure className="d-flex gap-1 center-y">
+                                <span className="w-5rem h-5rem bg-tile-blue d-iblock rounded-100px border-grey-01 hide-overflow">
+                                    {data.data?.owner?.image ? <img src={`${import.meta.env.VITE_REACT_APP_API_URL}/${data.data.owner.image}`} alt="owner's-avatar"/> : null}
+                                </span>
+                                <figcaption className="fs-6 text-white font-weight-500 uppercase">{data.data?.owner?.name}</figcaption>
+                            </figure>
+
+                            <ol id="blog-details" className="bg-tile-blue plr-15 ptb-1 rounded-1 h-fit">
+                                {
+                                    getFormatedMetaData()?.map((_,index) => (
+                                        <li key={index} className="fs-4 line-height-25rem text-no-wrap">
+                                            <strong className="d-iblock font-weight-300">{Object.keys(getFormatedMetaData()[index])[0]}</strong>
+                                            <span>{Object.values(getFormatedMetaData()[index])[0]}</span>
+                                        </li>
+                                    ))
+                                }
+                            </ol>
+                        </div>
                     </div>
 
-                    <div dangerouslySetInnerHTML={{__html:data?.data.content}}></div>
+                    <div className="mt-2" dangerouslySetInnerHTML={{__html:data?.data.content}}></div>
                 </>
             }
         </section>

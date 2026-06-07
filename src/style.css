@@ -139,6 +139,9 @@
 .center-y{
     align-items: center;
 }
+.align-items-end{
+    align-items: end;
+}
 .align-self-end{
     align-self: flex-end;
 }
@@ -311,6 +314,9 @@
 .pr-05{
     padding-right: .5rem;
 }
+.pr-1{
+    padding-right: 1rem;
+}
 .p-15{
     padding: 1.5rem;
 }
@@ -403,6 +409,9 @@
 }
 .w-3rem{
     width: 3rem;
+}
+.w-5rem{
+    width: 5rem;
 }
 .w-7rem{
     width: 7rem;

@@ -1,3 +1,13 @@
+/* Screen width <= 1024 */
+@media screen and (width <= 1024px) {
+    .d-block_L_1024{
+        display: block;
+    }
+    .mt-125_L_1024{
+        margin-top: 1.25rem;
+    }
+}
+
 /* Screen width <= 1120 */
 @media screen and (width <= 1120px) {
     /* line height */
